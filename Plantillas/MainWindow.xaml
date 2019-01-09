@@ -1,0 +1,40 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Plantillas"
+        mc:Ignorable="d"
+        Title="Plantillas" Height="190.594" Width="310.149" Loaded="Window_Loaded" Icon="32.ico">
+    <Window.Resources>
+        <Style TargetType="Image" x:Key="sexo">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Sexo}" Value="Hombre">
+                    <Setter Property="Image.Source" Value="hombre.png" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Sexo}" Value="Mujer">
+                    <Setter Property="Image.Source" Value="mujer.png" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <ComboBox x:Name="PersonasComboBox" ItemsSource="{Binding}" Height="40" Width="200" SelectedValuePath="Id">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+
+                    <StackPanel Orientation = "Horizontal" Margin = "2" Width="200">
+                        <Ellipse Height="40" Width="40" Margin="2,0,0,0" VerticalAlignment="Center">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding Foto}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Text="{Binding Nombre}" Margin="5,0,0,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"/>
+                        <Image Style="{StaticResource sexo}" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </Grid>
+</Window>
